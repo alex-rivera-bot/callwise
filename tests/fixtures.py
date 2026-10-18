@@ -1,0 +1,17 @@
+VALID = {
+    "age": 35,
+    "job": "management",
+    "marital": "married",
+    "education": "tertiary",
+    "default": "no",
+    "balance": 1200,
+    "housing": "yes",
+    "loan": "no",
+    "contact": "cellular",
+    "day": 15,
+    "month": "may",
+    "campaign": 2,
+    "pdays": -1,
+    "previous": 0,
+    "poutcome": "unknown",
+}

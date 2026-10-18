@@ -1,0 +1,13 @@
+.git
+.venv
+__pycache__
+*.pyc
+.pytest_cache
+.ruff_cache
+data
+mlruns
+mlflow.db
+tests
+.github
+ml/data_pipeline.py
+ml/train.py
