@@ -1,0 +1,19 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+ 
+# 数据只提交 DVC 指针，不提交 csv
+data/*.csv
+ 
+# 实验记录不提交
+mlruns/
+mlflow.db
+ 
+# 模型只提交最终那一个
+ml/models/*.pkl
+!ml/models/model.pkl
+ 
+# 环境变量绝不提交
+.env
