@@ -21,6 +21,14 @@ def test_predict_returns_three_fields():
     assert set(body) == {"probability", "decision", "threshold"}
  
  
+def test_threshold_changes_decision(monkeypatch):
+    monkeypatch.setattr(main_module, "THRESHOLD", 0.0)
+    assert client.post("/predict", json=VALID).json()["decision"] == "call"
+
+    monkeypatch.setattr(main_module, "THRESHOLD", 2.0)
+    assert client.post("/predict", json=VALID).json()["decision"] == "skip"
+
+
 def test_threshold_boundary(monkeypatch):
     p = predict_proba(VALID)
     monkeypatch.setattr(main_module, "THRESHOLD", p - 1e-6)
@@ -28,8 +36,3 @@ def test_threshold_boundary(monkeypatch):
 
     monkeypatch.setattr(main_module, "THRESHOLD", p + 1e-6)
     assert client.post("/predict", json=VALID).json()["decision"] == "skip"
- 
- 
-def test_threshold_boundary_counts_as_call(monkeypatch):
-    monkeypatch.setattr(main_module, "THRESHOLD", predict_proba(VALID))
-    assert client.post("/predict", json=VALID).json()["decision"] == "call"
