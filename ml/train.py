@@ -28,7 +28,7 @@ def git_commit():
     try:
         out = subprocess.check_output(["git", "rev-parse", "--short", "HEAD"])
         return out.decode().strip()
-    except Exception:
+    except (OSError, subprocess.SubprocessError):
         return "unknown"
  
  
@@ -111,9 +111,10 @@ def main():
     else:
         best = "run2-improved-rf"
  
-    with open(f"ml/models/{best}.pkl", "rb") as src:
-        with open("ml/models/model.pkl", "wb") as dst:
-            dst.write(src.read())
+    with open(f"ml/models/{best}.pkl", "rb") as src, open(
+        "ml/models/model.pkl", "wb"
+    ) as dst:
+        dst.write(src.read())
     print("best:", best, "-> ml/models/model.pkl")
  
  
