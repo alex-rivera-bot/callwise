@@ -1,0 +1,22 @@
+name: CD
+ 
+on:
+  push:
+    branches: [staging, main]
+ 
+jobs:
+  build-image:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Create .env from environment secrets
+        run: |
+          if [ "${{ github.ref_name }}" = "staging" ]; then
+            printf '%s\n' "${{ secrets.STAGING_ENV }}" > .env
+          else
+            printf '%s\n' "${{ secrets.PROD_ENV }}" > .env
+          fi
+      - name: Build image
+        run: docker build -t callwise:${{ github.ref_name }} .
+      - name: Show built image
+        run: docker images | grep callwise

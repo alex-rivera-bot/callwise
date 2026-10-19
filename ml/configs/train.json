@@ -1,0 +1,11 @@
+{
+  "baseline": {
+    "model": "LogisticRegression",
+    "C": 1.0
+  },
+  "improved": {
+    "model": "RandomForest",
+    "n_estimators": 200,
+    "max_depth": 12
+  }
+}
