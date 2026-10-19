@@ -7,9 +7,8 @@ __pycache__/
 # 数据只提交 DVC 指针，不提交 csv
 data/*.csv
  
-# 实验记录不提交
+# 实验记录：mlruns 太大不提交；mlflow.db 随仓库交付，供演示查看实验
 mlruns/
-mlflow.db
  
 # 模型只提交最终那一个
 ml/models/*.pkl
