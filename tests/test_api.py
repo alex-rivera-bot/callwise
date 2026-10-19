@@ -1,11 +1,12 @@
 """接口行为：健康检查、返回字段、阈值真的会改变结论。"""
  
+from fastapi.testclient import TestClient
+
 import app.main as main_module
 from app.main import app
 from app.model import predict_proba
-from fastapi.testclient import TestClient
 from tests.fixtures import VALID
- 
+
 client = TestClient(app)
  
  

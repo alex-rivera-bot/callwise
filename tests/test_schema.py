@@ -1,9 +1,10 @@
 """接口输入校验：缺字段、类型错、越界、多余字段、没见过的类别。"""
  
-from app.main import app
 from fastapi.testclient import TestClient
+
+from app.main import app
 from tests.fixtures import VALID
- 
+
 client = TestClient(app)
  
  
